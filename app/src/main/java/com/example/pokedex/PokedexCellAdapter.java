@@ -16,13 +16,13 @@ import android.widget.TextView;
 import java.io.InputStream;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
-public class pokedex_cell extends ArrayAdapter{
+public class PokedexCellAdapter extends ArrayAdapter{
 
     private final int layoutResource;
     private final LayoutInflater layoutInflater;
     private List<JSONEntry> aplicativos;
 
-    public pokedex_cell(Context context, int resource, List<JSONEntry> aplicativos) {
+    public PokedexCellAdapter(Context context, int resource, List<JSONEntry> aplicativos) {
         super(context, resource);
         this.layoutResource = resource;
         this.layoutInflater = LayoutInflater.from(context);
@@ -76,7 +76,7 @@ public class pokedex_cell extends ArrayAdapter{
             this.id = v.findViewById(R.id.PokeId);
             this.weight = v.findViewById(R.id.pokeWeight);
             this.height = v.findViewById(R.id.pokeHeigh);
-            this.img = v.findViewById(R.id.imgPokemon);
+            this.img = v.findViewById(R.id.imgPokemonDetail);
         }
     }
 

@@ -1,6 +1,8 @@
 package com.example.pokedex;
 
-public class JSONEntry {
+import java.io.Serializable;
+
+public class JSONEntry implements Serializable {
     private String id;
     private String num;
     private String nome;
@@ -16,6 +18,8 @@ public class JSONEntry {
         this.height = height;
         this.weight = weight;
     }
+
+
 
     public String getId() {
         return id;

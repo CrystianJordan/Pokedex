@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".pokedex_cell">
+    tools:context=".PokedexCellAdapter">
 
     <ImageView
-        android:id="@+id/imgPokemon"
+        android:id="@+id/imgPokemonDetail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -27,7 +27,7 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imgPokemon"
+        app:layout_constraintStart_toEndOf="@+id/imgPokemonDetail"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -40,7 +40,7 @@
         android:text="TextView"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imgPokemon"
+        app:layout_constraintStart_toEndOf="@+id/imgPokemonDetail"
         app:layout_constraintTop_toBottomOf="@+id/PokeName" />
 
     <TextView
@@ -54,7 +54,7 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imgPokemon"
+        app:layout_constraintStart_toEndOf="@+id/imgPokemonDetail"
         app:layout_constraintTop_toBottomOf="@+id/PokeId" />
 
     <TextView
@@ -68,7 +68,7 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imgPokemon"
+        app:layout_constraintStart_toEndOf="@+id/imgPokemonDetail"
         app:layout_constraintTop_toBottomOf="@+id/pokeWeight" />
 
 </android.support.constraint.ConstraintLayout>

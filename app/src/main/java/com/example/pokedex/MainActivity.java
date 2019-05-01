@@ -1,12 +1,11 @@
 package com.example.pokedex;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -17,24 +16,34 @@ import org.json.JSONTokener;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private ListView listview;
     private List listaPokemon = new ArrayList();
+    private ArrayList<JSONEntry> listaPoke = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         listview = findViewById(R.id.pokedexList);
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> a, View v, int position,
+                                    long id) {
+
+                Intent intent = new Intent(MainActivity.this, PokemonDetail.class);
+                intent.putExtra("pokemon", (JSONEntry) listaPoke.get(position));
+                startActivity(intent);
+            }
+        });
 
         DownloadDeDados downloadDeDados = new DownloadDeDados();
         downloadDeDados.execute("https://raw.githubusercontent.com/Biuni/PokemonGO-Pokedex/master/pokedex.json");
@@ -69,10 +78,17 @@ public class MainActivity extends AppCompatActivity {
                             jsonArray.getJSONObject(i).getString("img"),
                             jsonArray.getJSONObject(i).getString("height"),
                             jsonArray.getJSONObject(i).getString("weight"));
+
+                    JSONEntry pokemon = new JSONEntry(jsonArray.getJSONObject(i).getString("id"),jsonArray.getJSONObject(i).getString("num"),
+                            jsonArray.getJSONObject(i).getString("name"),
+                            jsonArray.getJSONObject(i).getString("img"),
+                            jsonArray.getJSONObject(i).getString("height"),
+                            jsonArray.getJSONObject(i).getString("weight"));
                     listaPokemon.add(jsonPokemon);
+                    listaPoke.add(pokemon);
                 }
 
-                pokedex_cell rssListAdapter = new pokedex_cell(MainActivity.this,
+                PokedexCellAdapter rssListAdapter = new PokedexCellAdapter(MainActivity.this,
                         R.layout.pokedex_cell, listaPokemon);
                 listview.setAdapter(rssListAdapter);
 
